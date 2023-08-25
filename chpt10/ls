@@ -1,0 +1,16 @@
+#include <iostream>
+#include <iterator>
+#include <vector>
+using namespace std;
+
+int main(int argc, char** argv) {
+  istream_iterator<string> in_iter(cin);
+  istream_iterator<string> eof_iter;
+  vector<string> vec(in_iter, eof_iter);  // type Ctrl+d pass EOF to the stream
+
+  ostream_iterator<string> out_iter(cout, " ");
+  copy(vec.begin(), vec.end(), out_iter);
+  cout << endl;
+
+  return 0;
+}
