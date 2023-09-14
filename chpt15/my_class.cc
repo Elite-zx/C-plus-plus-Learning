@@ -71,5 +71,13 @@ ostream& operator<<(ostream& os, const Mac& a_mac) {
   os << a_mac.width << " " << a_mac.length << " " << a_mac.resolution << " "
      << a_mac.cpu_model;  // no newlines
   return os;
-}
+};
 
+class iMac final : public Mac {
+ public:
+  using Mac::Mac;  // inherit Mac's constructor
+  iMac(iMac& rhs) : Mac(rhs) {}
+
+  // rhs here is a lvalue rather than a rvalue
+  iMac(iMac&& rhs) : Mac(std::move(rhs)) {}
+};
