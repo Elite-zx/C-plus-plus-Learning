@@ -2,6 +2,7 @@
 #define STRVEC
 
 #include <cstdlib>
+#include <exception>
 #include <iostream>
 #include <memory>
 
@@ -14,7 +15,10 @@ class StrVec {
   StrVec& operator=(const StrVec& rhs);
   ~StrVec();
 
-  void push_back(const string&);
+  void push_back(const string& elem);
+
+  template <typename... Args>
+  void emplace_back(Args&&... args);
 
   size_t size() const { return first_free - elements; };
   size_t capacity() const { return cap - first_free; };

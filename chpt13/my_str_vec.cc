@@ -38,3 +38,14 @@ StrVec::StrVec(const StrVec& rhs) {
   elements = tmp.first;
   first_free = cap = tmp.second;
 }
+
+void StrVec::push_back(const string& elem) {
+  chk_n_alloc();
+  alloc.construct(first_free++, elem);
+}
+
+template <typename... Args>
+void StrVec::emplace_back(Args&&... args) {
+  chk_n_alloc();
+  alloc.construct(first_free++, forward<Args>(args)...);
+}
